@@ -1,16 +1,39 @@
+<input type="text" class="algolia__input js-algolia__input" autocomplete="off" placeholder="Search in the blog..." />
+
 <script>
-  (function() {
-  var gcse = document.createElement('script'),
-      s = document.getElementsByTagName('script')[0];
-  gcse.type = 'text/javascript';
-  gcse.async = true;
-  gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//cse.google.com/cse.js?cx=016977336332817163153:wexke3v672y';
-  s.parentNode.insertBefore(gcse, s);
-  })();
-  </script>
-<gcse:search></gcse:search>
-<style>
-  .cse .gsc-control-cse, .gsc-control-cse, .cse form.gsc-search-box, form.gsc-search-box {
-    padding: 0;
+  window.ALGOLIA_CONFIG = {
+    'applicationId': '{{ site.algolia.application_id }}',
+    'indexName': '{{ site.algolia.index_name }}',
+    'apiKey': '{{ site.algolia.read_only_api_key }}',
+    'baseurl': '{{ site.baseurl }}'
   }
-</style>
+</script>
+<script id="algolia__template" type="text/template">
+{% raw %}
+<article class="preview-post post">
+  <div class="media-padded">
+    <div class="meta-info">
+      <h1 class="h3"><a class="title" href="{{ full_url }}">{{{ _highlightResult.title.value }}}</a></h1>
+      <p class="post-info">{{ posted_at_readable }} • By {{ author }} • In {{ tags_readable }}</p>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="entry">
+      <p class="excerpt">{{{ _highlightResult.text.value }}}</p>
+    </div>
+      
+    <a href="{{{ full_url }}}" class="read-more">Read more <i class="blog-icon read-more"></i></a>
+  </div>
+</article>
+{% endraw %}
+</script>
+<script id="algolia__template--no-results" type="text/template">
+  No results found.
+</script>
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/algoliasearch/3.6.0/algoliasearch.min.js"></script>
+<script src="//cdn.jsdelivr.net/algoliasearch.helper/2.1.0/algoliasearch.helper.min.js"></script>
+<script src="//cdn.jsdelivr.net/hogan.js/3.0.2/hogan.min.js"></script>
+<script src="//cdn.jsdelivr.net/momentjs/2.10.3/moment.min.js"></script>
+<script src="{{ site.baseurl }}/js/algolia-scroller.js"></script>
+<script src="{{ site.baseurl }}/js/algolia-instant-search.js"></script>

@@ -46,6 +46,15 @@ url: http://stackexchange.github.io/blog
 # Host name for careers-jobs ad server
 adshost: local.clc.stackoverflow.com
 
+# Algolia search
+algolia:
+  application_id: 'EVABRM56SA'
+  index_name: 'blog'
+  read_only_api_key: '9f3c5685918f029eb1fe08f9eb35ea07'
+  excluded_files:
+    - 404.html
+    - index.html
+
 # If you're hosting your site at a Project repository on GitHub pages 
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)

@@ -25,9 +25,12 @@ top_nav: engineering
 	<div class="-row">
 		<div class="-col8">
 			<div class="posts">
-				{% for post in paginator.posts %}
-				{{ post.pre_render }}
-				{% endfor %}
+        <div class="algolia__initial-content js-algolia__initial-content">
+          {% for post in paginator.posts %}
+            {{ post.pre_render }}
+          {% endfor %}
+        </div>
+        <div class="algolia__search-content js-algolia__search-content"></div>
 			</div>
 		</div>
 		<div class="-col4">
